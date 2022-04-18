@@ -1,2 +1,1 @@
-#
 # mini-rss-reader
