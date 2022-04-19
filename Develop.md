@@ -12,5 +12,9 @@
 
 
 - Creer les differents  modeles 
- 
+
+- Service lecture flux 
+
+- `ng g s core/services/flux-rss-reader`
+- `npm install --save xml2js`
 
