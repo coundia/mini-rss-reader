@@ -17,7 +17,6 @@ export class FluxRssReaderService {
   // URI_STATUS : string="http://localhost:8080/api/v1/rss/status"
   //PROD
   URI_ITEMS : string="https://mini-rss-api.herokuapp.com/api/v1/rss/items"
-  URI_STATUS : string="https://mini-rss-api.herokuapp.com/api/v1/rss/status"
   URI_REFRESH : string="https://mini-rss-api.herokuapp.com/api/v1/rss/refresh"
 
   constructor(private http:HttpClient) { }
@@ -26,22 +25,8 @@ export class FluxRssReaderService {
     const requestUrl = `?page=${page}&siz=${size}`;
      return this.http.get<any>(this.URI_ITEMS+requestUrl);
   }
-  /*
-  getItemsBis(sort: string, order: SortDirection, page: number){
-    return this.getItems(sort, order, page):
-    Observable<ItemApi> {
-      return this.fluxRssReaderService.getItems(page,5).pipe(
-        map(item =>(
-          {
-            items: item?._embedded.items,
-            total_count: item?._embedded.items.length,
-          }
-        ))
-      )
-
-
-    }
-
+  //refresh liste items
+  refreshItems():Observable<any>{
+    return this.http.get<any>(this.URI_REFRESH);
   }
-  */
 }

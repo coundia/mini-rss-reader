@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {merge, Observable, of} from "rxjs";
-import { map } from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {Item} from "../../core/models/item/item.model";
 import {FluxRssReaderService} from "../../core/services/flux-rss-reader.service";
 
@@ -64,6 +64,11 @@ export class ItemListComponent implements OnInit, AfterViewInit {
       ).subscribe(data => this.data = data);
   }
 
+  refleshItems() {
+    this.fluxRssReaderService.refreshItems().subscribe(
+      take(1)
+    );
+  }
 }
 
 export interface ItemApi {
