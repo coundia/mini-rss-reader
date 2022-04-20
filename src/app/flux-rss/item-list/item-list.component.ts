@@ -4,6 +4,12 @@ import { map } from 'rxjs/operators';
 import {Item} from "../../core/models/item/item.model";
 import {FluxRssReaderService} from "../../core/services/flux-rss-reader.service";
 
+
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort, SortDirection} from '@angular/material/sort';
+import {catchError, startWith, switchMap} from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',

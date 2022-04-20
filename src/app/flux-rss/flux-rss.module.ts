@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemComponent } from './item/item.component';
-import { ItemDetailsComponent } from './item-details/item-details.component';
 import { ItemListComponent } from './item-list/item-list.component';
 
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
-  
+
     ItemComponent,
-        ItemDetailsComponent,
         ItemListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+     MatTableModule
   ]
 })
 export class FluxRssModule { }

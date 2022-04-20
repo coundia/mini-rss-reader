@@ -18,3 +18,6 @@
 - `ng g s core/services/flux-rss-reader`
 - `npm install --save xml2js`
 
+#Installer materials angular
+
+- ng add @angular/material
