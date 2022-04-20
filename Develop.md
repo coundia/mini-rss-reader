@@ -21,3 +21,14 @@
 #Installer materials angular
 
 - ng add @angular/material
+
+
+#Delpoyer dans heroku 
+- npm install express path --save
+- Modifier package.json
+- "start" : "node server.js"   
+- "engines": { "node": "14.19.0", "npm": "6.14.16" }
+  
+- git add .
+- git commit -m " deploy to heroku config "
+- git push heroku main
