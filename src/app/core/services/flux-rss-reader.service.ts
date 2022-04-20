@@ -12,9 +12,13 @@ import {ItemApi} from "../../flux-rss/item-list/item-list.component";
 export class FluxRssReaderService {
 
    // URI : string="https://mini-rss-api.herokuapp.com/api/v1/rss/items"
-   URI_ITEMS : string="http://localhost:8080/api/v1/rss/items"
-   URI_REFRESH : string="http://localhost:8080/api/v1/rss/refresh"
-   URI_STATUS : string="http://localhost:8080/api/v1/rss/status"
+   // URI_ITEMS : string="http://localhost:8080/api/v1/rss/items"
+   // URI_REFRESH : string="http://localhost:8080/api/v1/rss/refresh"
+  // URI_STATUS : string="http://localhost:8080/api/v1/rss/status"
+  //PROD
+  URI_ITEMS : string="https://mini-rss-api.herokuapp.com/api/v1/rss/items"
+  URI_STATUS : string="https://mini-rss-api.herokuapp.com/api/v1/rss/status"
+  URI_REFRESH : string="https://mini-rss-api.herokuapp.com/api/v1/rss/refresh"
 
   constructor(private http:HttpClient) { }
 //recuper la liste des articles depuis le monde
