@@ -11,8 +11,8 @@ import {SortDirection} from "@angular/material/sort";
 export class FluxRssReaderService {
 
    // URI : string="https://mini-rss-api.herokuapp.com/api/v1/rss/items"
-  //  URI_ITEMS : string="http://localhost:8080/api/v1/rss/items"
-  //  URI_REFRESH : string="http://localhost:8080/api/v1/rss/refresh"
+   // URI_ITEMS : string="http://localhost:8080/api/v1/rss/items"
+   // URI_REFRESH : string="http://localhost:8080/api/v1/rss/refresh"
   //PROD
   URI_ITEMS : string="https://mini-rss-api.herokuapp.com/api/v1/rss/items"
   URI_REFRESH : string="https://mini-rss-api.herokuapp.com/api/v1/rss/refresh"
@@ -29,12 +29,12 @@ export class FluxRssReaderService {
   }
   //get by Uri
   getItemsByUri(uri:string):Observable<any>{
-    return this.http.get<any>(uri);
+    return this.http.get<any>(uri+"&sort=pubDate,desc");
   }
 
   update(item: Item) {
     console.log("updated item ")
     console.log(item)
-       return this.http.put(item?._links?.self?.href,{title:item.title,description:item.description,imageUrl:item.imageUrl,pubDate:Date.now(),link:item.link})
+       return this.http.patch(item?._links?.self?.href,{title:item.title,description:item.description})
   }
 }
