@@ -1,3 +1,6 @@
 [submodule "mini_rss_reader_spring"]
 	path = mini_rss_reader_spring
 	url = https://github.com/coundia/mini_rss_reader_spring
+[submodule "doc_mini_rss_reader-c4"]
+	path = doc_mini_rss_reader-c4
+	url = https://github.com/coundia/doc_mini_rss_reader-c4
