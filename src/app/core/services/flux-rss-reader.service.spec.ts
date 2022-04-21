@@ -13,12 +13,5 @@ describe('FluxRssReaderService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  //TDD getItem
-  it('#getItem doit retourner des items',
-    (done: DoneFn) => {
-      service.getItems().subscribe(value => {
-        expect(value.length).toBeGreaterThan(1)
-        done();
-      });
-    });
+ //tdd
 });

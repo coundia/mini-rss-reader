@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {map, switchMap} from "rxjs/operators";
 import {SortDirection} from "@angular/material/sort";
-import {ItemApi} from "../../flux-rss/item-list/item-list.component";
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +21,21 @@ export class FluxRssReaderService {
   constructor(private http:HttpClient) { }
 //recuper la liste des articles depuis le monde
   getItems(page:number,size:number):Observable<any>{
-    const requestUrl = `?page=${page}&siz=${size}`;
-     return this.http.get<any>(this.URI_ITEMS+requestUrl);
+    const requestUrl = `?page=${page}&size=${size}`;
+     return this.getItemsByUri(this.URI_ITEMS+requestUrl);
   }
   //refresh liste items
   refreshItems():Observable<any>{
     return this.http.get<any>(this.URI_REFRESH);
+  }
+  //get by Uri
+  getItemsByUri(uri:string):Observable<any>{
+    return this.http.get<any>(uri);
+  }
+
+  update(item: Item) {
+    console.log("updated item ")
+    console.log(item)
+       return this.http.put(item?._links?.self?.href,{title:item.title,description:item.description,imageUrl:item.imageUrl,pubDate:Date.now(),link:item.link})
   }
 }

@@ -12,6 +12,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatBadgeModule} from "@angular/material/badge";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -25,7 +31,13 @@ import {MatButtonModule} from "@angular/material/button";
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatDialogModule,
+    MatInputModule
   ]
 })
 export class FluxRssModule { }

@@ -9,6 +9,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, SortDirection} from '@angular/material/sort';
 import {catchError, startWith, switchMap} from 'rxjs/operators';
 import {HttpClient} from "@angular/common/http";
+import {ItemComponent} from "../item/item.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -16,85 +18,133 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.scss']
 })
-export class ItemListComponent implements OnInit, AfterViewInit {
+export class ItemListComponent implements OnInit {
 
-  $items!: Observable<Item[]> ;
+  $items!: Observable<Item[]>;
   item!: Item;
+  items!: Item[];
 
   //var mat
-  displayedColumns: string[] = ['title','description','pubDate'];
-  itemRessource!: ItemRessource | null;
-  data: Item[] = [];
+
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   //var mat end
-  constructor(private fluxRssReaderService:FluxRssReaderService,private _httpClient: HttpClient) { }
+  page: number = 5;
+  size: number = 5;
+  links!: ApiLink;
+  pages!: ApiPage;
+
+  constructor(public dialog: MatDialog,private fluxRssReaderService: FluxRssReaderService) {
+  }
+
   ngOnInit(): void {
-    // this.$items=
+    this.chargerPageByNum(this.page,this.size);
+
   }
-  //method for mat
-  ngAfterViewInit() {
-    this.itemRessource = new ItemRessource(this.fluxRssReaderService);
-    // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.itemRessource!.getItems(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex)
-            .pipe(catchError(() => of(null)));
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = data === null;
-
-          if (data === null) {
-            return [];
-          }
-          this.resultsLength = data.total_count;
-          return data.items;
-        })
-      ).subscribe(data => this.data = data);
-  }
-
+//charger les nouveaux articles
   refleshItems() {
     this.fluxRssReaderService.refreshItems().subscribe(
       // take(1),
-      ()=>{
+      () => {
         window.location.reload();
       })
   }
-}
+//charger une page
+  chargerPage(uri: string) {
+    this.fluxRssReaderService.getItemsByUri(uri)
+      .pipe(
+        take(1),
+        map(item => {
+            this.itemBuilder(item)
+          }
+        ),
+        tap(() => console.log(this.items))
+      ).subscribe();
+  }
 
-export interface ItemApi {
-  items: Item[];
-  total_count: number;
-}
+  /***
+   *  Maj la vue
+   * @param item
+   */
+  itemBuilder(item: any) {
+    console.log("********* itemBuilder **************")
+    console.log(item);
+    this.items = item?._embedded?.items;
+    this.links = {
+      first: item?._links?.first?.href,
+      last: item?._links?.last?.href,
+      next: item?._links?.next?.href,
+      prev: item?._links?.prev?.href,
+      profile: item?._links?.profile?.href,
+      search: item?._links?.search?.href,
+      self: item?._links?.self?.href,
+    }
+    //bind page
+    this.pages = item?.page;
+  }
 
-//
-export class ItemRessource {
-  constructor(private fluxRssReaderService: FluxRssReaderService) {}
+  chargerNextPage() {
+    this.chargerPage(this.links?.next);
+  }
 
-  getItems(sort: string, order: SortDirection, page: number): Observable<ItemApi> {
-    return this.fluxRssReaderService.getItems(page,5).pipe(
-      map(item =>(
-        {
-          items: item?._embedded.items,
-          total_count: item?.page.size,
-        }
-      ))
-    )
+  chargerPrevPage() {
+    this.chargerPage(this.links?.prev);
+  }
 
-    ;
+  paginatorBuilder() {
+    return new Array(this.pages?.size);
+  }
+
+  //charger page by num
+  //charger une page
+  chargerPageByNum(page: number,size:number): void {
+    this.fluxRssReaderService.getItems(page, size)
+      .pipe(
+        take(1),
+        map(item => {
+            this.itemBuilder(item)
+          }
+        ),
+        tap(() => console.log(this.items))
+      ).subscribe();
+  }
+
+  checkFin() {
+     return this.pages?.number === this.pages?.size;
+  }
+  //edit
+  openDialog(item:Item): void {
+    const dialogRef = this.dialog.open(ItemComponent, {
+        width: '100%',
+        height: '100%',
+      data: {...item},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
   }
 }
 
+//ApiPage
+export interface ApiPage {
+  number: number,
+  size: number,
+  totalElements: number,
+  totalPages: number,
+}
 
-
+//ApiPage
+export interface ApiLink {
+  first: string,
+  last: string,
+  next: string,
+  prev: string,
+  profile: string,
+  search: string,
+  self: string,
+}

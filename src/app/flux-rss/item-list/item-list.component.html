@@ -1,51 +1,62 @@
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title class="center">Flux Rss Reader</mat-card-title>
-    <mat-card-subtitle>Le monde</mat-card-subtitle>
+    <mat-card-title class="center">
+      <button id="btn_refresh" (click)="refleshItems()" mat-mini-fab matBadge="{{pages?.totalElements}}"
+              aria-label="Example icon button with a home icon">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      Flux Rss le monde
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <!--  all-items-->
+    <div class="item-card" *ngFor="let item of items">
 
-  <div class="example-container mat-elevation-z8">
-    <div class="example-loading-shade"
-         *ngIf="isLoadingResults || isRateLimitReached">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-        GitHub's API rate limit has been reached. It will be reset in one minute.
-      </div>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title> {{ item.title | titlecase }}.
+
+            <mat-icon aria-hidden="false"  (click)="openDialog(item)" color="red" aria-label="Modifier le titre">edit</mat-icon>
+
+          </mat-card-title>
+          <mat-card-subtitle> Publié le {{ item.pubDate | date : 'd MMMM yyyy à HH:mm:ss' }} </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="item.imageUrl" [alt]="item.title">
+        <mat-card-content>
+          <p>
+            {{ item.description  }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button target="_blank" href="{{ item.link}}"> Voir l'article</a>
+        </mat-card-actions>
+      </mat-card>
     </div>
 
-    <div class="example-table-container">
-
-      <table mat-table [dataSource]="data" class="example-table"
-             matSort matSortActive="pubDate" matSortDisableClear matSortDirection="desc">
-        <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Titre</th>
-          <td mat-cell *matCellDef="let row">{{row.title}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let row">{{row.description}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="pubDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-            pubDate
-          </th>
-          <td mat-cell *matCellDef="let row">{{row.pubDate |   date: 'à HH:mm, le d MMMM yyyy'   }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-
-    <mat-paginator [length]="resultsLength"  [pageSize]="5" aria-label="Select page of GitHub search results"></mat-paginator>
-  </div>
+    <!--  all-items end -->
 
   </mat-card-content>
+
   <mat-card-actions>
-    <button (click)="refleshItems()"  class="btn btn-primary" mat-button>Recharge les nouvelles donnees</button>
+    <!--    pagination-->
+
+    <div class="center">
+
+      <button [disabled]="pages?.number == 1" (click)="chargerPrevPage()">
+        Présente
+      </button>
+      <span *ngFor="let p of paginatorBuilder() let c = index">
+        <button [ngClass]=" pages?.number == c+1? 'c_active' : 'c_disabled'"
+                (click)="chargerPageByNum(c+1,size)">{{c + 1}}</button>
+      </span>
+
+      <button [disabled]="checkFin() " (click)="chargerNextPage()"> Suivante</button>
+    </div>
+
+
+    <!--    pagination end-->
+
   </mat-card-actions>
 </mat-card>

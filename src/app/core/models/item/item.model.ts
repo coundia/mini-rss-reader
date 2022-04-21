@@ -4,4 +4,6 @@ export class Item {
   description!: string;
   pubDate!: Date;
   imageUrl!: string;
+  link!: string;
+  _links!: any;
 }
