@@ -33,7 +33,10 @@
 - git commit -m " deploy to heroku config "
 - git push heroku main
 
-
+## Lier a heroku 
+ 
+- heroku git:remote -a mini-rss-reader
+- git push heroku main 
 # add Pwa
 
 - ng add @angular/pwa  --project  mini-rss-reader
