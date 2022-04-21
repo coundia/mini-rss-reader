@@ -32,7 +32,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   //var mat end
-  page: number = 5;
+  page: number = 0;
   size: number = 5;
   links!: ApiLink;
   pages!: ApiPage;
@@ -41,6 +41,7 @@ export class ItemListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.chargerPageByNum(this.page,this.size);
 
   }
@@ -84,6 +85,9 @@ export class ItemListComponent implements OnInit {
     }
     //bind page
     this.pages = item?.page;
+
+    this.page = item?.page?.number;
+    this.size = item?.page?.size;
   }
 
   chargerNextPage() {
@@ -95,7 +99,10 @@ export class ItemListComponent implements OnInit {
   }
 
   paginatorBuilder() {
-    return new Array(this.pages?.size);
+    if(this.pages.totalPages<10)
+    return new Array(this.pages.totalPages);
+    else
+    return new Array(10);
   }
 
   //charger page by num
@@ -113,7 +120,7 @@ export class ItemListComponent implements OnInit {
   }
 
   checkFin() {
-     return this.pages?.number === this.pages?.size;
+     return this.pages?.number === this.pages?.totalPages;
   }
   //edit
   openDialog(item:Item): void {

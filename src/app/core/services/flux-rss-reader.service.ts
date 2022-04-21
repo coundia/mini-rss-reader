@@ -11,9 +11,8 @@ import {SortDirection} from "@angular/material/sort";
 export class FluxRssReaderService {
 
    // URI : string="https://mini-rss-api.herokuapp.com/api/v1/rss/items"
-   // URI_ITEMS : string="http://localhost:8080/api/v1/rss/items"
-   // URI_REFRESH : string="http://localhost:8080/api/v1/rss/refresh"
-  // URI_STATUS : string="http://localhost:8080/api/v1/rss/status"
+  //  URI_ITEMS : string="http://localhost:8080/api/v1/rss/items"
+  //  URI_REFRESH : string="http://localhost:8080/api/v1/rss/refresh"
   //PROD
   URI_ITEMS : string="https://mini-rss-api.herokuapp.com/api/v1/rss/items"
   URI_REFRESH : string="https://mini-rss-api.herokuapp.com/api/v1/rss/refresh"

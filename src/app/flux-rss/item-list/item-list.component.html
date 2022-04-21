@@ -48,12 +48,15 @@
         Présente
       </button>
       <span *ngFor="let p of paginatorBuilder() let c = index">
-        <button [ngClass]=" pages?.number == c+1? 'c_active' : 'c_disabled'"
-                (click)="chargerPageByNum(c+1,size)">{{c + 1}}</button>
+        <button [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'"
+                (click)="chargerPageByNum(c,size)">{{c }}</button>
       </span>
-
+      <button [disabled]="checkFin() " *ngIf="pages.number >=9" (click)="chargerPrevPage()"> ..</button>
+      <button [disabled]="checkFin() " *ngIf="pages.number >=9" (click)="chargerNextPage()"> {{pages.number +1}}</button>
       <button [disabled]="checkFin() " (click)="chargerNextPage()"> Suivante</button>
+      
     </div>
+    <div class="row center">Page courante : {{pages?.number}} | Nombre de Page totale  : {{pages?.totalPages}}</div>
 
 
     <!--    pagination end-->

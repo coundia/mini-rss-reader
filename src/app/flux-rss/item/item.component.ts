@@ -29,7 +29,7 @@ export class ItemComponent implements OnInit {
     return this.serviceRss.update(data).subscribe(
       ()=>{
         alert("Mise à jour reussi .lien : "+data?._links?.self?.href);
-        window.location.reload();
+         window.location.reload();
       }
     );
   }
