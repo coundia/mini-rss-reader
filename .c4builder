@@ -1,0 +1,14 @@
+{
+	"projectName": "mini-rss-reader",
+	"homepageName": "Overview",
+	"rootFolder": "src",
+	"distFolder": "docs",
+	"generateMD": false,
+	"generatePDF": true,
+	"generateCompleteMD": true,
+	"generateCompletePDF": false,
+	"generateWEB": false,
+	"pdfCss": "C:\\Users\\papa.coundia\\AppData\\Roaming\\npm\\node_modules\\c4builder\\pdf.css",
+	"plantumlVersion": "latest",
+	"includeBreadcrumbs": false
+}

@@ -54,6 +54,38 @@ interface bien définie.
 
 ### `Code`
 
-Represené  notre MCD (Model conceptuel de données) .
+   notre MCD (Model conceptuel de données) .
 
 
+
+
+## Lancer le projet
+- Backend (spring)
+- mvn spring-boot:run
+
+
+- front end (angular)
+- npm  install
+- ng serve
+
+## Lien de test
+- front end
+- https://mini-rss-reader.herokuapp.com/
+
+- Backend
+- https://mini-rss-api.herokuapp.com/api/v1/rss/items
+- https://mini-rss-api.herokuapp.com/api/v1/rss/refresh
+- https://mini-rss-api.herokuapp.com/api/v1/rss/status
+
+
+## MODEL C4
+
+#Context
+
+![Conext](context.png)
+
+## Architecture
+![Architecture](deployment.png)
+
+
+by coundia
