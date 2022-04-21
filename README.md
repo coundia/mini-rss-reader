@@ -60,13 +60,28 @@ interface bien définie.
 
 
 ## Lancer le projet
+
+### Backend  (SPRING)
+1- Option 1 : passser par la release
+- Telecharger le fichier :  https://github.com/coundia/mini_rss_reader_spring/releases/download/v1.1/mini_rss_reader_spring-v1.1.jar
+- Configurer le JRE de JAVA
+- java -jar mini_rss_reader_spring-v1.1.jar
+
+
+2- Option 2 : passer maven
 - Backend (spring)
 - mvn spring-boot:run
 
 
-- front end (angular)
-- npm  install
-- ng serve
+
+### front end (angular)
+1- Option 1 : passser par la release
+- Telecharger le dist : https://github.com/coundia/mini-rss-reader/releases/download/v1.1/distV1.1.zip
+- decompresser le 
+- SI vous n'avez de  serveur Apache ou NGINX 
+-  - npm install --global http-server
+-  - cd distV1 
+-  --  http-server -o
 
 ## Lien de test
 - front end
