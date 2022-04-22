@@ -4,8 +4,10 @@
     <mat-card-title class="my-head">
 
       <div class="my-head-inner">
-        <button id="btn_refresh" (click)="refleshItems()" mat-mini-fab matBadge="{{pages?.totalElements}}"
-                aria-label="Example icon button with a home icon">
+        <button id="btn_refresh" color="accent" (click)="refleshItems()" mat-mini-fab matBadgeColor="primary"
+                matBadge="{{pages?.totalElements}}"
+                aria-label="Recuperer les nouveaux articles .">
+
           <mat-icon>refresh</mat-icon>
         </button>
         <a mat-button href="https://www.lemonde.fr/rss/en_continu.xml" target="_blank">Flux Rss le monde</a>
@@ -21,8 +23,13 @@
 
       <mat-card class="one-item-card">
         <mat-card-header>
-          <mat-card-title> {{ item.title | titlecase }}.
-            <mat-icon aria-hidden="false"  (click)="openDialog(item)" color="red" aria-label="Modifier le titre">edit</mat-icon>
+          <mat-card-title class="text-bold">
+
+             {{ item.title | titlecase }}.
+
+
+            <a mat-button title="Modifier le titre ou l'extrait ." color="accent"    >
+              <mat-icon aria-hidden="false" (click)="openDialog(item)" color="accent" aria-label="Modifier le titre">edit</mat-icon></a>
           </mat-card-title>
           <mat-card-subtitle> Publié le {{ item.pubDate | date : 'd MMMM yyyy à HH:mm:ss' }} </mat-card-subtitle>
         </mat-card-header>
@@ -33,7 +40,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <a mat-button target="_blank" href="{{ item.link}}"> Voir l'article</a>
+          <a mat-raised-button color="accent"  class="text-bold"   target="_blank" href="{{ item.link}}"> Voir l'article  <mat-icon>arrow_forward</mat-icon></a>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -47,19 +54,19 @@
 
     <div class="center">
 
-      <button [disabled]="pages?.number == 1" (click)="chargerPrevPage()">
+      <button mat-button   [disabled]="pages?.number == 1" (click)="chargerPrevPage()">
         Présente
       </button>
       <span *ngFor="let p of paginatorBuilder() let c = index">
-        <button [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'"
+        <button mat-button  [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'"
                 (click)="chargerPageByNum(c,size)">{{c }}</button>
       </span>
-      <button [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerPrevPage()"> ..</button>
-      <button [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerNextPage()"> {{pages.number +1}}</button>
-      <button [disabled]="checkFin() " (click)="chargerNextPage()"> Suivante</button>
+      <button mat-button  [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerPrevPage()"> ..</button>
+      <button mat-button  [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerNextPage()"> {{pages.number + 1}}</button>
+      <button mat-button  [disabled]="checkFin() " (click)="chargerNextPage()"> Suivante</button>
 
     </div>
-    <div class="row center">Page courante : {{pages?.number}} | Nombre de Page totale  : {{pages?.totalPages}}</div>
+    <div class="row center">Page courante : {{pages?.number}} | Nombre de Page totale : {{pages?.totalPages}}</div>
 
 
     <!--    pagination end-->
