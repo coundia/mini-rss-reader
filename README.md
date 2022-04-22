@@ -131,7 +131,7 @@ Spring est un framework Java  open source .
 - [https://mini-rss-reader.herokuapp.com/](https://mini-rss-reader.herokuapp.com/)
 
 
-#Guide utilisateurs
+# Guide utilisateurs
 
 - Boutton pour recuperer les derniers articles depuis le monde.fr
 
@@ -155,10 +155,10 @@ Spring est un framework Java  open source .
 
 - PWA : Pour desktop et Mobile 
 
-![!PWA](img_1.png))
+![!PWA](img_1.png)
 
 
 - Copyright (c)
-- Coundia 
+- P. Coundia 
 - PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA
 
