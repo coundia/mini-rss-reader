@@ -41,7 +41,7 @@ export class ItemListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     this.chargerPageByNum(this.page,this.size);
 
   }
@@ -99,10 +99,10 @@ export class ItemListComponent implements OnInit {
   }
 
   paginatorBuilder() {
-    if(this.pages.totalPages<10)
+    if(this.pages.totalPages<5)
     return new Array(this.pages.totalPages);
     else
-    return new Array(10);
+    return new Array(5);
   }
 
   //charger page by num
