@@ -131,5 +131,34 @@ Spring est un framework Java  open source .
 - [https://mini-rss-reader.herokuapp.com/](https://mini-rss-reader.herokuapp.com/)
 
 
+#Guide utilisateurs
 
-by coundia
+- Boutton pour recuperer les derniers articles depuis le monde.fr
+
+![Boutton pour recuperer les derniers articles depuis le monde.fr](recuperer.png)
+
+- Listes articles 
+
+![Listes articles](liste.png)
+
+- Modifier titre ou Description
+
+![Modifier titre ou Description](edit.png)
+
+- Résultat apres réactualisation de la page
+
+![resultat apres reactualisation de la page](resultat.png)
+
+- Pagination
+
+![Pagination](img.png)
+
+- PWA : Pour desktop et Mobile 
+
+![!PWA](img_1.png))
+
+
+- Copyright (c)
+- Coundia 
+- PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA
+
