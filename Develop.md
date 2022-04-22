@@ -45,3 +45,11 @@
 # Fix issue : 2-pb-responsive-on-mobile
 git fetch origin
 git checkout 2-pb-responsive-on-mobile
+
+# Heroku fix CI/CD github issue
+
+https://help.heroku.com/CKVOUPSY/how-to-switch-deployment-method-from-github-to-heroku-git-with-all-the-changes-app-code-available-in-a-github-repo
+git pull origin
+git checkout main
+heroku git:remote -a mini-rss-reader
+git push heroku main:main
