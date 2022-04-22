@@ -54,8 +54,8 @@
         <button [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'"
                 (click)="chargerPageByNum(c,size)">{{c }}</button>
       </span>
-      <button [disabled]="checkFin() " *ngIf="pages.number >=9" (click)="chargerPrevPage()"> ..</button>
-      <button [disabled]="checkFin() " *ngIf="pages.number >=9" (click)="chargerNextPage()"> {{pages.number +1}}</button>
+      <button [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerPrevPage()"> ..</button>
+      <button [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerNextPage()"> {{pages.number +1}}</button>
       <button [disabled]="checkFin() " (click)="chargerNextPage()"> Suivante</button>
 
     </div>
