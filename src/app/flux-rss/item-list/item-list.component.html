@@ -28,11 +28,6 @@
             {{ item.title | titlecase }}.
 
 
-            <a mat-button title="Modifier le titre ou l'extrait ." color="accent">
-              <mat-icon aria-hidden="false" (click)="openDialog(item)" color="accent" aria-label="Modifier le titre">
-                edit
-              </mat-icon>
-            </a>
           </mat-card-title>
           <mat-card-subtitle> Publié le {{ item.pubDate | date : 'd MMMM yyyy à HH:mm:ss' }} </mat-card-subtitle>
         </mat-card-header>
@@ -43,12 +38,22 @@
           <p>
             {{ item.description  }}
           </p>
+          <div></div>
+          <div class="card-buttons">
+            <a mat-raised-button color="accent" class="text-bold btn-voir" target="_blank" href="{{ item.link}}"> Voir l'article
+              <mat-icon>arrow_forward</mat-icon>
+            </a>
+            <a mat-raised-button aria-hidden="false"  class="text-bold btn-edit" (click)="openDialog(item)"   aria-label="Modifier le titre"  title="Modifier le titre ou l'extrait ." color="accent">Modifier
+              <mat-icon >
+                launch
+              </mat-icon>
+            </a>
+          </div>
+          <div></div>
         </mat-card-content>
-        <mat-card-actions>
-          <a mat-raised-button color="accent" class="text-bold" target="_blank" href="{{ item.link}}"> Voir l'article
-            <mat-icon>arrow_forward</mat-icon>
-          </a>
-        </mat-card-actions>
+
+
+
       </mat-card>
     </div>
 

@@ -19,27 +19,31 @@ import {FormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
          ItemComponent,
         ItemListComponent
   ],
-    imports: [
-        CommonModule,
-        MatTableModule,
-        MatSortModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatCardModule,
-        MatButtonModule,
-        MatIconModule,
-        MatBadgeModule,
-        MatFormFieldModule,
-        FormsModule,
-        MatDialogModule,
-        MatInputModule,
-        MatSlideToggleModule
-    ]
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    MatProgressBarModule,
+    MatDividerModule
+  ]
 })
 export class FluxRssModule { }
