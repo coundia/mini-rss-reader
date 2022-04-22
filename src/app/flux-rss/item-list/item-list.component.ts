@@ -99,10 +99,10 @@ export class ItemListComponent implements OnInit {
   }
 
   paginatorBuilder() {
-    if(this.pages.totalPages<5)
+    if(this.pages.totalPages<3)
     return new Array(this.pages.totalPages);
     else
-    return new Array(5);
+    return new Array(3);
   }
 
   //charger page by num

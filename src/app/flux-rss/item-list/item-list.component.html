@@ -58,11 +58,10 @@
         Présente
       </button>
       <span *ngFor="let p of paginatorBuilder() let c = index">
-        <button mat-button  [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'"
-                (click)="chargerPageByNum(c,size)">{{c }}</button>
+        <button mat-button  [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'" (click)="chargerPageByNum(c,size)">{{c }}</button>
       </span>
-      <button mat-button  [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerPrevPage()"> ..</button>
-      <button mat-button  [disabled]="checkFin() " *ngIf="pages.number >=4" (click)="chargerNextPage()"> {{pages.number + 1}}</button>
+      <button mat-button  [disabled]="checkFin() " *ngIf="pages.number >=3" (click)="chargerPrevPage()"> ..</button>
+      <button class="c_active" mat-button  [disabled]="checkFin() " *ngIf="pages.number >=3" (click)="chargerNextPage()"> {{pages.number }}</button>
       <button mat-button  [disabled]="checkFin() " (click)="chargerNextPage()"> Suivante</button>
 
     </div>
