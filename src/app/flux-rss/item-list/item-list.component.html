@@ -1,25 +1,28 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title class="center">
-      <button id="btn_refresh" (click)="refleshItems()" mat-mini-fab matBadge="{{pages?.totalElements}}"
-              aria-label="Example icon button with a home icon">
-        <mat-icon>refresh</mat-icon>
-      </button>
-      Flux Rss le monde
+
+    <mat-card-title class="my-head">
+
+      <div class="my-head-inner">
+        <button id="btn_refresh" (click)="refleshItems()" mat-mini-fab matBadge="{{pages?.totalElements}}"
+                aria-label="Example icon button with a home icon">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <a mat-button href="https://www.lemonde.fr/rss/en_continu.xml" target="_blank">Flux Rss le monde</a>
+
+
+      </div>
+
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <!--  all-items-->
     <div class="item-card" *ngFor="let item of items">
 
-      <mat-card class="example-card">
+      <mat-card class="one-item-card">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title> {{ item.title | titlecase }}.
-
             <mat-icon aria-hidden="false"  (click)="openDialog(item)" color="red" aria-label="Modifier le titre">edit</mat-icon>
-
           </mat-card-title>
           <mat-card-subtitle> Publié le {{ item.pubDate | date : 'd MMMM yyyy à HH:mm:ss' }} </mat-card-subtitle>
         </mat-card-header>
@@ -54,7 +57,7 @@
       <button [disabled]="checkFin() " *ngIf="pages.number >=9" (click)="chargerPrevPage()"> ..</button>
       <button [disabled]="checkFin() " *ngIf="pages.number >=9" (click)="chargerNextPage()"> {{pages.number +1}}</button>
       <button [disabled]="checkFin() " (click)="chargerNextPage()"> Suivante</button>
-      
+
     </div>
     <div class="row center">Page courante : {{pages?.number}} | Nombre de Page totale  : {{pages?.totalPages}}</div>
 

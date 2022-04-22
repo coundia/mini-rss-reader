@@ -40,3 +40,8 @@
 # add Pwa
 
 - ng add @angular/pwa  --project  mini-rss-reader
+
+
+# Fix issue : 2-pb-responsive-on-mobile
+git fetch origin
+git checkout 2-pb-responsive-on-mobile
