@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  URI_STATUS : "http://localhost:8080/api/v1/rss/status",
-  URI_ITEMS : "http://localhost:8080/api/v1/rss/items",
-  URI_REFRESH : "http://localhost:8080/api/v1/rss/refresh"
+  URI_STATUS : "https://mini-rss-api.herokuapp.com/api/v1/rss/status",
+  URI_ITEMS : "https://mini-rss-api.herokuapp.com/api/v1/rss/items",
+  URI_REFRESH : "https://mini-rss-api.herokuapp.com/api/v1/rss/refresh"
 };
 
 /*
