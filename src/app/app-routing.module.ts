@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {ItemListComponent} from "./flux-rss/item-list/item-list.component";
-import {ItemComponent} from "./flux-rss/item/item.component";
 import {AboutComponent} from "./about/about.component";
 
 const routes: Routes = [

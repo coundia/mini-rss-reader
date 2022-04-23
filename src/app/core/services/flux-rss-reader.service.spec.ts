@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { FluxRssReaderService } from './flux-rss-reader.service';
+import {FluxRssReaderService} from './flux-rss-reader.service';
 
 describe('FluxRssReaderService', () => {
   let service: FluxRssReaderService;

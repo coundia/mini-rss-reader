@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Item} from "../../core/models/item/item.model";
 import {FluxRssReaderService} from "../../core/services/flux-rss-reader.service";

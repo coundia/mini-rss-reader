@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ItemComponent } from './item/item.component';
-import { ItemListComponent } from './item-list/item-list.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ItemComponent} from './item/item.component';
+import {ItemListComponent} from './item-list/item-list.component';
 
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from "@angular/material/sort";

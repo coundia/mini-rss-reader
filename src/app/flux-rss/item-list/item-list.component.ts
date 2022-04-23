@@ -1,14 +1,12 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {merge, Observable, of} from "rxjs";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Observable} from "rxjs";
 import {map, take, tap} from 'rxjs/operators';
 import {Item} from "../../core/models/item/item.model";
 import {FluxRssReaderService} from "../../core/services/flux-rss-reader.service";
 
 
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort, SortDirection} from '@angular/material/sort';
-import {catchError, startWith, switchMap} from 'rxjs/operators';
-import {HttpClient} from "@angular/common/http";
+import {MatSort} from '@angular/material/sort';
 import {ItemComponent} from "../item/item.component";
 import {MatDialog} from "@angular/material/dialog";
 
