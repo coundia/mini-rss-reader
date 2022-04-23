@@ -158,7 +158,11 @@ Spring est un framework Java  open source .
 ![!PWA](img_1.png)
 
 
-- Copyright (c)
+Lien Swagger 
+
+![https://mini-rss-api.herokuapp.com/swagger-ui/index.html](https://mini-rss-api.herokuapp.com/swagger-ui/index.html)
+
+
 - P. Coundia 
 - PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA
 
