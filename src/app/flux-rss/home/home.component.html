@@ -1,5 +1,16 @@
-<app-header></app-header>
+<div>
+  <mat-toolbar color="accent">
+    <div class="flex-stretch"></div>
+    <mat-icon>{{ isDark ? "dark_mode" : "light_mode" }}</mat-icon>
+    <mat-slide-toggle [formControl]="changerThemeFromCtrl" class="mr-8">
+    </mat-slide-toggle>
+    <span class="center">Lecteur flux RSS</span>
+  </mat-toolbar>
+</div>
 
+
+<app-header></app-header>
 <app-item-list></app-item-list>
 
 <app-footer></app-footer>
+

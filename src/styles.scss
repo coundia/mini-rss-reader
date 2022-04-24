@@ -1,19 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+//importer theme de base
+@use '@angular/material' as mat;
 
+@include mat.core();
 html, body {
-  height: 90%;
+  height: 100% !important;
 }
 
 body {
+  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-//#contenue {
-//  margin-right: auto;
-//  margin-left: auto;
-//  max-width: 900px;
-//}
 .center {
   display: flex;
   justify-content: center;
+}
+
+// mode nuit
+$my-warn: mat.define-palette(mat.$red-palette);
+$dark-primary: mat.define-palette(mat.$pink-palette);
+$dark-accent: mat.define-palette(mat.$blue-gray-palette);
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+    warn: $my-warn,
+  )
+));
+// mode jour
+$light-primary: mat.define-palette(mat.$indigo-palette);
+$light-accent: mat.define-palette(mat.$yellow-palette, A600, A100, A400);
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $my-warn,
+  )
+));
+// theme par defaut
+@include mat.all-component-themes($light-theme);
+//mode nuit
+.my-dark-theme {
+  @include mat.all-component-colors($dark-theme);
 }

@@ -54,13 +54,17 @@ git fetch origin git checkout 2-pb-responsive-on-mobile
 
 git pull origin git checkout main heroku git:remote -a mini-rss-reader git push heroku main:main
 
-## MODE NUIT 
-
+## MODE NUIT
 
 HELPED :  https://zoaibkhan.com/blog/angular-material-dark-mode-in-3-steps/
 
-
-## ADD flex-layout for dev 
+## ADD flex-layout for dev
 
 - fxLayout : gerer les ROW et column
-- -  fxFlex : gerer les row 
+-
+  - fxFlex : gerer les row
+
+## Generer ma pallete
+
+[https://colorhunt.co/palette/f4f6fffbd46d4f8a8b07031a](//https://colorhunt.co/palette/f4f6fffbd46d4f8a8b07031a)
+
