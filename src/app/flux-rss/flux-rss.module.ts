@@ -21,11 +21,12 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatDividerModule} from "@angular/material/divider";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
-         ItemComponent,
-        ItemListComponent
+    ItemComponent,
+    ItemListComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +44,9 @@ import {MatDividerModule} from "@angular/material/divider";
     MatInputModule,
     MatSlideToggleModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatToolbarModule
   ]
 })
-export class FluxRssModule { }
+export class FluxRssModule {
+}

@@ -1,6 +1,8 @@
 export const environment = {
   production: false,
-  URI_STATUS : "http://localhost:8080/api/v1/rss/status",
-  URI_ITEMS : "http://localhost:8080/api/v1/rss/items",
-  URI_REFRESH : "http://localhost:8080/api/v1/rss/refresh"
+  BASE_URL: "http://localhost/api/v1/rss",
+  PATH_STATUS: "/status",
+  PATH_ITEMS: "/items",
+  PATH_REFRESH: "/refresh",
+  PATH_CHANNELS: "/channels"
 };
