@@ -4,6 +4,10 @@
 <mat-toolbar class="center">
   <button mat-icon-button class="example-icon" title="Mode Jour" aria-label="Example icon-button with menu icon">
     <mat-icon>tips_and_updates</mat-icon>
+
+  </button>
+  <button (click)="changerVue()" mat-icon-button class="example-icon" title="Mode Jour" aria-label="Example icon-button with menu icon">
+    <mat-icon>view_module</mat-icon>
   </button>
   <a (click)="refleshItems()">
     <span *ngIf="!isMobile">{{defaultChannel.title | titlecase}}</span>
