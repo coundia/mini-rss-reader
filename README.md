@@ -161,6 +161,10 @@ Spring est un framework Java open source .
 
 ![!PWA](img_1.png)
 
+#Release V1.5 
+
+![Version 1.5](v1.5.png)
+
 Lien Swagger
 
 [https://mini-rss-api.herokuapp.com/swagger-ui/index.html](https://mini-rss-api.herokuapp.com/swagger-ui/index.html)
