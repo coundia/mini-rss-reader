@@ -180,6 +180,7 @@ Spring est un framework Java open source .
 https://github.com/coundia/mini-rss-reader/wiki
 
 
+Auteurs :
 
 - [P. Coundia](https://coundia.github.io)
 
