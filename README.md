@@ -39,8 +39,7 @@ d'architectures logicielles1,2. Elle est basée sur la décomposition structurel
 composants. La décomposition plus détaillée de ces éléments architecturaux peut alors s'appuyer sur des techniques de
 modélisation existantes telles que le langage de modélisation unifié (UML) ou les diagrammes entité-associations.
 
-  [Source definition](https://fr.wikipedia.org/wiki/Mod%C3%A9lisation_C4)
-
+[Source definition](https://fr.wikipedia.org/wiki/Mod%C3%A9lisation_C4)
 
 # Terminologies du modelC4
 
@@ -78,30 +77,32 @@ Representé notre MCD (Model conceptuel de données) .
 
 ![Architecture](container.png)
 
-
-
 ### Backend  ([SPRING](https://spring.io/why-spring))
 
-Spring est un framework Java  open source . 
-- Leger 
-- Development rapide 
+Spring est un framework Java open source .
+
+- Leger
+- Development rapide
 - Bonne communauté
 - Complet (Beaucoup d'outils)
-- 
-# Lancer le backend-end 
+-
+
+# Lancer le backend-end
 
 1- Option 1 : passer par la release
 
-- télécharger le binaire :  `wget https://github.com/coundia/mini_rss_reader_spring/releases/download/v1.1/mini_rss_reader_spring-v1.1.jar`
+- télécharger le
+  binaire :  `wget https://github.com/coundia/mini_rss_reader_spring/releases/download/v1.1/mini_rss_reader_spring-v1.1.jar`
 - Configurer le JRE de JAVA
 - `java -jar mini_rss_reader_spring-v1.1.jar`
 
 2- Option 2 : passer maven
+
 - cloner le projet : `git clone https://github.com/coundia/mini_rss_reader_spring`
 - `mvn spring-boot:run`
 
 - Api Backend
-  - gerer les articles (GET,PATCH,POST,POST) : Lister , modifier etc 
+  - gerer les articles (GET,PATCH,POST,POST) : Lister , modifier etc
   - [https://mini-rss-api.herokuapp.com/api/v1/rss/items](https://mini-rss-api.herokuapp.com/api/v1/rss/items)
   - Recuperer les articles depuis le monde et les mettre dans notre base de donnees
   - [https://mini-rss-api.herokuapp.com/api/v1/rss/refresh](https://mini-rss-api.herokuapp.com/api/v1/rss/refresh)
@@ -119,7 +120,7 @@ Spring est un framework Java  open source .
 - `cd distV1`
 - `http-server -o`
 
-2- Option 2 : passer npm 
+2- Option 2 : passer npm
 
 - cloner le projet : `git clone https://github.com/coundia/mini-rss-reader`
 - `npm install`
@@ -130,14 +131,13 @@ Spring est un framework Java  open source .
 - Front-end
 - [https://mini-rss-reader.herokuapp.com/](https://mini-rss-reader.herokuapp.com/)
 
-
 # Guide utilisateurs
 
 - Boutton pour recuperer les derniers articles depuis le monde.fr
 
 ![Boutton pour recuperer les derniers articles depuis le monde.fr](recuperer.png)
 
-- Listes articles 
+- Listes articles
 
 ![Listes articles](liste.png)
 
@@ -153,16 +153,14 @@ Spring est un framework Java  open source .
 
 ![Pagination](img.png)
 
-- PWA : Pour desktop et Mobile 
+- PWA : Pour desktop et Mobile
 
 ![!PWA](img_1.png)
 
-
-Lien Swagger 
+Lien Swagger
 
 [https://mini-rss-api.herokuapp.com/swagger-ui/index.html](https://mini-rss-api.herokuapp.com/swagger-ui/index.html)
 
-
-- P. Coundia 
+- P. Coundia
 - PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA
 

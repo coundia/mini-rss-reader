@@ -14,22 +14,23 @@ export class ItemComponent implements OnInit {
     public dialogRef: MatDialogRef<ItemComponent>,
     public serviceRss: FluxRssReaderService,
     @Inject(MAT_DIALOG_DATA) public data: Item,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
 
-    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   updateItem(data: Item) {
-   // alert(data.title)
+    // alert(data.title)
     return this.serviceRss.update(data).subscribe(
-      ()=>{
-        alert("Mise à jour réussi lien de l'article modifié  : "+data?._links?.self?.href);
-         window.location.reload();
+      () => {
+        alert("Mise à jour réussi lien de l'article modifié  : " + data?._links?.self?.href);
+        window.location.reload();
       }
     );
   }

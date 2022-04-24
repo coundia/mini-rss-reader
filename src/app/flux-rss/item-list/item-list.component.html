@@ -1,23 +1,32 @@
+<mat-toolbar   >
+  <button mat-icon-button class="example-icon"  title="Mode Jour" aria-label="Example icon-button with menu icon">
+      <mat-icon>tips_and_updates</mat-icon>
+  </button>
+  <a   (click)="refleshItems()">
+    <span>{{defaultChannel.title | titlecase}}</span>
+  </a>
+
+  <span class="example-spacer"></span>
+  <button title="Recuperer les nouveaux articles ." (click)="refleshItems()" mat-button  color="accent" id="btn_refresh" color="accent"  matBadgeColor="primary"
+          matBadge="{{pages?.totalElements}}"
+          aria-label="Recuperer les nouveaux articles .">
+    <mat-icon>refresh</mat-icon>
+  </button>
+
+</mat-toolbar>
+
 <mat-card class="example-card">
   <mat-card-header>
 
     <mat-card-title class="my-head">
 
-      <div class="my-head-inner">
-        <button id="btn_refresh" color="accent" (click)="refleshItems()" mat-mini-fab matBadgeColor="primary"
-                matBadge="{{pages?.totalElements}}"
-                aria-label="Recuperer les nouveaux articles .">
-
-          <mat-icon>refresh</mat-icon>
-        </button>
-        <a mat-button href="https://www.lemonde.fr/rss/en_continu.xml" target="_blank">Flux Rss le monde</a>
-
-
-      </div>
-
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <div class="center" *ngIf="onChargement()">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+
     <!--  all-items-->
     <div class="item-card" *ngFor="let item of items">
 
@@ -32,7 +41,7 @@
           <mat-card-subtitle> Publié le {{ item.pubDate | date : 'd MMMM yyyy à HH:mm:ss' }} </mat-card-subtitle>
         </mat-card-header>
 
-          <img mat-card-image [src]="item.imageUrl" [alt]="item.title">
+        <img mat-card-image [src]="item.imageUrl" [alt]="item.title">
 
         <mat-card-content>
           <p>
@@ -40,18 +49,19 @@
           </p>
           <div></div>
           <div class="card-buttons">
-            <a mat-raised-button color="accent" class="text-bold btn-voir" target="_blank" href="{{ item.link}}"> Voir l'article
+            <a mat-raised-button color="accent" class="text-bold btn-voir" target="_blank" href="{{ item.link}}"> Voir
+              l'article
               <mat-icon>arrow_forward</mat-icon>
             </a>
-            <a mat-raised-button aria-hidden="false"  class="text-bold btn-edit" (click)="openDialog(item)"   aria-label="Modifier le titre"  title="Modifier le titre ou l'extrait ." color="accent">Modifier
-              <mat-icon >
+            <a mat-raised-button aria-hidden="false" class="text-bold btn-edit" (click)="openDialog(item)"
+               aria-label="Modifier le titre" title="Modifier le titre ou l'extrait ." color="accent">Modifier
+              <mat-icon>
                 launch
               </mat-icon>
             </a>
           </div>
           <div></div>
         </mat-card-content>
-
 
 
       </mat-card>
@@ -66,6 +76,7 @@
 
     <div class="center">
 
+
       <button mat-button *ngIf="pages.number <3" [disabled]="pages.number <= 0" (click)="chargerPrevPage()">
         Précédente
       </button>
@@ -74,11 +85,11 @@
       </button>
       <span *ngFor="let p of paginatorBuilder() let c = index">
         <button mat-button [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'"
-                (click)="chargerPageByNum(c,size)">{{c+1}}</button>
+                (click)="chargerPageByNum(c,size)">{{c + 1}}</button>
       </span>
       <span *ngIf="pages.number >=3">..</span>
       <button class="c_active" mat-button [disabled]="checkFin() " *ngIf="pages.number >=3"
-              (click)="chargerNextPage()"> {{pages.number+1 }}</button>
+              (click)="chargerNextPage()"> {{pages.number + 1 }}</button>
 
       <button mat-button *ngIf="pages.number <3" [disabled]="checkFin() " (click)="chargerNextPage()">Suivant</button>
       <button mat-button *ngIf="pages.number >=3" [disabled]="checkFin() " (click)="chargerNextPage()">
@@ -86,7 +97,7 @@
       </button>
 
     </div>
-    <div class="row center">Page courante : {{pages.number+1}} | Nombre de Page totale : {{pages?.totalPages}}</div>
+    <div class="row center">Page courante : {{pages.number + 1}} | Nombre de Page totale : {{pages?.totalPages}}</div>
     <!--    pagination end-->
 
   </mat-card-actions>

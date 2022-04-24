@@ -13,5 +13,5 @@ describe('FluxRssReaderService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
- //tdd
+  //tdd
 });

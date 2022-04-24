@@ -5,9 +5,9 @@ import {ItemListComponent} from "./flux-rss/item-list/item-list.component";
 import {AboutComponent} from "./about/about.component";
 
 const routes: Routes = [
-   {path: '',component: ItemListComponent},
-   {path: 'about',component: AboutComponent}
-  ]
+  {path: '', component: ItemListComponent},
+  {path: 'about', component: AboutComponent}
+]
 
 @NgModule({
   declarations: [],
@@ -19,4 +19,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

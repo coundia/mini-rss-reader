@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Observable} from "rxjs";
 import {map, take, tap} from 'rxjs/operators';
 import {Item} from "../../core/models/item/item.model";
 import {FluxRssReaderService} from "../../core/services/flux-rss-reader.service";
@@ -9,6 +8,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ItemComponent} from "../item/item.component";
 import {MatDialog} from "@angular/material/dialog";
+import {ApiPage} from "../../core/interfaces/ApiPage.interface";
+import {ApiLink} from "../../core/interfaces/ApiLink.interface";
+import {Channel} from "../../core/models/item/channel.model";
 
 
 @Component({
@@ -18,74 +20,115 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class ItemListComponent implements OnInit {
 
-  $items!: Observable<Item[]>;
   item!: Item;
   items!: Item[];
 
-  //var mat
-
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   //var mat end
   page: number = 0;
   size: number = 5;
-  links!: ApiLink;
-  pages!: ApiPage;
+  links: ApiLink = {
+    first: "",
+    last: "",
+    next: "",
+    prev: "",
+    profile: "",
+    search: "",
+    self: "",
+  };
+  pages: ApiPage = {
+    number: 0,
+    size: 5,
+    totalElements: 5,
+    totalPages: 1,
+  };
+  chargementActive: boolean = true;
+  //chanels
+  defaultChannel: { imageUrl: string; link: string; description: string; language: string; title: string } = {
+    description: "Le Monde.fr - 1er site d’information.",
+    imageUrl: "/logo.png",
+    language: "fr",
+    link: "https://www.lemonde.fr/rss/en_continu.xml",
+    title: "Le Monde.fr - Actualités et Infos en France et dans le monde"
+  };
+  private channels: Channel[] | undefined;
 
-  constructor(public dialog: MatDialog,private fluxRssReaderService: FluxRssReaderService) {
+
+  constructor(public dialog: MatDialog, private fluxRssReaderService: FluxRssReaderService) {
   }
 
   ngOnInit(): void {
+    console.log("****** on init ***")
+    //recuperer les articles
+    this.chargerPageByNum(this.page, this.size);
+    //recuperer les categories
+    this.fluxRssReaderService.getChannelByPage(this.page, this.size).pipe(
+      take(1),
+      map(res => {
+         this.channels = this.channelBuilder(res);
+      }),
+      tap(
+        () => {
+          console.log(this.channels);
+          if(this.channels != undefined) {
+            this.defaultChannel=this.channels[0];
+          }
+        }
+      )
+    ).subscribe();
 
-    this.chargerPageByNum(this.page,this.size);
 
   }
+
 //charger les nouveaux articles
   refleshItems() {
     this.fluxRssReaderService.refreshItems().subscribe(
       // take(1),
       () => {
+        this.chargementActive = false;
         window.location.reload();
       })
   }
+
 //charger une page
   chargerPage(uri: string) {
     this.fluxRssReaderService.getItemsByUri(uri)
       .pipe(
         take(1),
-        map(item => {
-            this.itemBuilder(item)
+        map(ressource => {
+            this.itemBuilder(ressource)
           }
         ),
-        tap(() => console.log(this.items))
+
+        tap(() => {
+          this.chargementActive = false;
+        })
       ).subscribe();
   }
 
   /***
-   *  Maj la vue
+   *  Parser les items recu depuis l'api
    * @param item
    */
-  itemBuilder(item: any) {
-    console.log("********* itemBuilder **************")
-    console.log(item);
-    this.items = item?._embedded?.items;
+  itemBuilder(ressource: any) {
+
+    //listes des articles recupere
+    this.items = ressource?._embedded?.items;
     this.links = {
-      first: item?._links?.first?.href,
-      last: item?._links?.last?.href,
-      next: item?._links?.next?.href,
-      prev: item?._links?.prev?.href,
-      profile: item?._links?.profile?.href,
-      search: item?._links?.search?.href,
-      self: item?._links?.self?.href,
+      first: ressource?._links?.first?.href,
+      last: ressource?._links?.last?.href,
+      next: ressource?._links?.next?.href,
+      prev: ressource?._links?.prev?.href,
+      profile: ressource?._links?.profile?.href,
+      search: ressource?._links?.search?.href,
+      self: ressource?._links?.self?.href,
     }
     //bind page
-    this.pages = item?.page;
+    this.pages = ressource?.page;
 
-    this.page = item?.page?.number;
-    this.size = item?.page?.size;
+    this.page = ressource?.page?.number;
+    this.size = ressource?.page?.size;
   }
 
   chargerNextPage() {
@@ -97,15 +140,15 @@ export class ItemListComponent implements OnInit {
   }
 
   paginatorBuilder() {
-    if(this.pages.totalPages<3)
-    return new Array(this.pages.totalPages);
+    if (this.pages.totalPages < 3)
+      return new Array(this.pages.totalPages);
     else
-    return new Array(3);
+      return new Array(3);
   }
 
   //charger page by num
   //charger une page
-  chargerPageByNum(page: number,size:number): void {
+  chargerPageByNum(page: number, size: number): void {
     this.fluxRssReaderService.getItems(page, size)
       .pipe(
         take(1),
@@ -113,43 +156,45 @@ export class ItemListComponent implements OnInit {
             this.itemBuilder(item)
           }
         ),
-        tap(() => console.log(this.items))
+        tap(v => this.chargementActive = false)
       ).subscribe();
   }
 
   checkFin() {
-     return this.pages?.number === this.pages?.totalPages;
+    return this.pages?.number === this.pages?.totalPages;
   }
-  //edit
-  openDialog(item:Item): void {
+
+  //modal pour modifier un article
+  openDialog(item: Item): void {
     const dialogRef = this.dialog.open(ItemComponent, {
-        width: '100%',
-        height: '100%',
+      width: '100%',
+      height: '100%',
       data: {...item},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
 
     });
   }
+
+//lancer le spiner
+  onChargement(): boolean {
+    //verifier autres choses si necessaire
+    return this.chargementActive;
+  }
+
+  //channelBuilder
+  /***
+   *  Parser les channels recu depuis l'api
+   * @param item
+   */
+  channelBuilder(ressource: any): Channel[] {
+    //liste des channels
+    return this.channels = ressource?._embedded?.channels;
+
+  }
+
 }
 
-//ApiPage
-export interface ApiPage {
-  number: number,
-  size: number,
-  totalElements: number,
-  totalPages: number,
-}
 
-//ApiPage
-export interface ApiLink {
-  first: string,
-  last: string,
-  next: string,
-  prev: string,
-  profile: string,
-  search: string,
-  self: string,
-}

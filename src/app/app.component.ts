@@ -8,7 +8,8 @@ import {environment} from "../environments/environment";
 })
 export class AppComponent {
   title = 'mini-rss-reader';
+
   constructor() {
-    console.log("URI STATUS : ",environment.URI_STATUS);
+    console.log("URI STATUS : ", environment.BASE_URL);
   }
 }

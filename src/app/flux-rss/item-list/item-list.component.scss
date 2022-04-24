@@ -1,35 +1,44 @@
-#btn_refresh{
-  margin : 10px;
+#btn_refresh {
+  margin: 10px;
 }
-.c_active{
-  color : yellow;
-  font-weight : bold;
+
+.c_active {
+  color: yellow;
+  font-weight: bold;
   background: gray;
 }
+
 .center {
   display: flex;
   justify-content: center;
 }
+
 .image-container {
   display: flex;
   justify-content: center;
 }
-.one-item-card{
+
+.one-item-card {
   margin-top: 26px;
   padding-bottom: 65px;
 }
-.item-card{
+
+.item-card {
   margin-top: 26px;
 }
-.text-bold{
-  font-weight : bold ;
+
+.text-bold {
+  font-weight: bold;
 }
+
 img {
-  border-bottom: 4px solid  #ffd740
+  border-bottom: 4px solid #ffd740
 }
-.btn-voir{
+
+.btn-voir {
   float: left;
 }
-.btn-edit{
-float: right;
+
+.btn-edit {
+  float: right;
 }
