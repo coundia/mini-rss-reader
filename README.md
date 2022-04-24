@@ -8,7 +8,7 @@ PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA
 
 L’objectif de ce projet est de développer un lecteur de flux RSS
 
-By Papa COUNDIA
+Test de Papa COUNDIA
 
 ## Objectif
 
