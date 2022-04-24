@@ -25,6 +25,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {HomeComponent} from './home/home.component';
 import {CoreModule} from "../core/core.module";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatProgressBarModule,
     MatDividerModule,
     MatToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    FlexLayoutModule
   ]
 })
 export class FluxRssModule {

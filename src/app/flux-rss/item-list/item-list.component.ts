@@ -28,7 +28,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   //var mat end
   page: number = 0;
-  size: number = 5;
+  size: number = 6;
   links: ApiLink = {
     first: "",
     last: "",
@@ -38,6 +38,7 @@ export class ItemListComponent implements OnInit {
     search: "",
     self: "",
   };
+  nombreColonneDefault = 2;
   pages: ApiPage = {
     number: 0,
     size: 5,
@@ -213,6 +214,15 @@ export class ItemListComponent implements OnInit {
 
   getShortTitle(title: string) {
    return title.substring(0, 11)+"...";
+  }
+//vue de l'application
+  changerVue() {
+    console.log(this.nombreColonneDefault)
+    if( this.nombreColonneDefault<=3)
+      this.nombreColonneDefault=this.nombreColonneDefault-1;
+    if( this.nombreColonneDefault ==0)
+      this.nombreColonneDefault=3;
+
   }
 }
 

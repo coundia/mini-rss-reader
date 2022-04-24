@@ -1,44 +1,36 @@
-#btn_refresh {
-  margin: 10px;
-}
 
 .c_active {
   color: yellow;
   font-weight: bold;
   background: gray;
 }
-
-
-
+//
 .image-container {
   display: flex;
   justify-content: center;
 }
-
-.one-item-card {
-  margin-top: 26px;
-  padding-bottom: 65px;
-}
-
-.item-card {
-  margin-top: 26px;
-}
-
+//
 .text-bold {
   font-weight: bold;
 }
-
+//
 img {
   border-bottom: 4px solid #ffd740
 }
 
-.btn-voir {
-  float: left;
+mat-toolbar {
+  justify-content: space-between;
 }
 
-.btn-edit {
-  float: right;
+.content {
+  padding: 16px;
 }
-.mb-20{
-  margin-bottom: 20px;
+
+.content > mat-card {
+  margin-bottom: 16px;
+}
+
+.column-label {
+  margin-right: 8px;
+  font-size: 1rem;
 }
