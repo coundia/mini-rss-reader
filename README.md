@@ -165,7 +165,7 @@ Spring est un framework Java open source .
 
 ![Version 1.5](v1.5.png)
 
-Lien Swagger
+- Lien Swagger
 
 [https://mini-rss-api.herokuapp.com/swagger-ui/index.html](https://mini-rss-api.herokuapp.com/swagger-ui/index.html)
 
@@ -174,13 +174,14 @@ Lien Swagger
 [https://mini-rss-reader.herokuapp.com/](https://mini-rss-reader.herokuapp.com/)
 
 
-# Le WIKI 
+- Le WIKI 
 
 
 https://github.com/coundia/mini-rss-reader/wiki
 
 
 
-- P. Coundia
-- PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA
+- [P. Coundia](https://coundia.github.io)
+
+- [PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA](https://www.edacy.com)
 
