@@ -11,6 +11,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ApiPage} from "../../core/interfaces/ApiPage.interface";
 import {ApiLink} from "../../core/interfaces/ApiLink.interface";
 import {Channel} from "../../core/models/item/channel.model";
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 
 @Component({
@@ -55,24 +56,39 @@ export class ItemListComponent implements OnInit {
   private channels: Channel[] | undefined;
 
 
-  constructor(public dialog: MatDialog, private fluxRssReaderService: FluxRssReaderService) {
+  constructor(public dialog: MatDialog, private fluxRssReaderService: FluxRssReaderService, private responsiveService: BreakpointObserver) {
   }
+
+  isMobile = false;
 
   ngOnInit(): void {
     console.log("****** on init ***")
+
+    console.log('HandsetLandscape ' + Breakpoints.Medium);
+
+      this.responsiveService.observe([
+              Breakpoints.XSmall,
+              Breakpoints.Small,
+
+            ])
+      .subscribe(result => {
+        this.isMobile = result.matches;
+      });
+
+
     //recuperer les articles
     this.chargerPageByNum(this.page, this.size);
     //recuperer les categories
     this.fluxRssReaderService.getChannelByPage(this.page, this.size).pipe(
       take(1),
       map(res => {
-         this.channels = this.channelBuilder(res);
+        this.channels = this.channelBuilder(res);
       }),
       tap(
         () => {
           console.log(this.channels);
-          if(this.channels != undefined) {
-            this.defaultChannel=this.channels[0];
+          if (this.channels != undefined) {
+            this.defaultChannel = this.channels[0];
           }
         }
       )
@@ -195,6 +211,9 @@ export class ItemListComponent implements OnInit {
 
   }
 
+  getShortTitle(title: string) {
+   return title.substring(0, 11)+"...";
+  }
 }
 
 
