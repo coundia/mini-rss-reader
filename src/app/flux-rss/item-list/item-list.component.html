@@ -1,9 +1,11 @@
-<mat-toolbar   >
+<mat-toolbar class="center"  >
   <button mat-icon-button class="example-icon"  title="Mode Jour" aria-label="Example icon-button with menu icon">
       <mat-icon>tips_and_updates</mat-icon>
   </button>
   <a   (click)="refleshItems()">
-    <span>{{defaultChannel.title | titlecase}}</span>
+    <span *ngIf="!isMobile">{{defaultChannel.title | titlecase}}</span>
+    <span *ngIf="isMobile">{{getShortTitle(defaultChannel.title) | titlecase}}</span>
+
   </a>
 
   <span class="example-spacer"></span>
@@ -49,12 +51,13 @@
           </p>
           <div></div>
           <div class="card-buttons">
-            <a mat-raised-button color="accent" class="text-bold btn-voir" target="_blank" href="{{ item.link}}"> Voir
-              l'article
+            <a mat-raised-button color="accent" class="text-bold btn-voir" target="_blank" href="{{ item.link}}">
+              <span *ngIf="!isMobile"> Voir l'article</span>
               <mat-icon>arrow_forward</mat-icon>
             </a>
             <a mat-raised-button aria-hidden="false" class="text-bold btn-edit" (click)="openDialog(item)"
-               aria-label="Modifier le titre" title="Modifier le titre ou l'extrait ." color="accent">Modifier
+               aria-label="Modifier le titre" title="Modifier le titre ou l'extrait ." color="accent">
+              <span *ngIf="!isMobile">  Modifier </span>
               <mat-icon>
                 launch
               </mat-icon>
@@ -74,31 +77,44 @@
   <mat-card-actions>
     <!--    pagination-->
 
-    <div class="center">
+    <div class="center" *ngIf="!isMobile" >
 
 
-      <button mat-button *ngIf="pages.number <3" [disabled]="pages.number <= 0" (click)="chargerPrevPage()">
+      <button mat-button *ngIf="!isMobile" [disabled]="pages.number <= 0" (click)="chargerPrevPage()">
         Précédente
       </button>
-      <button mat-button *ngIf="pages.number >=3" [disabled]="checkFin() " (click)="chargerPrevPage()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
+
       <span *ngFor="let p of paginatorBuilder() let c = index">
         <button mat-button [ngClass]=" pages?.number == c? 'c_active' : 'c_disabled'"
                 (click)="chargerPageByNum(c,size)">{{c + 1}}</button>
       </span>
-      <span *ngIf="pages.number >=3">..</span>
+      <button  mat-button *ngIf="pages.number >=2" [disabled]="checkFin() " (click)="chargerPrevPage()">..</button>
       <button class="c_active" mat-button [disabled]="checkFin() " *ngIf="pages.number >=3"
               (click)="chargerNextPage()"> {{pages.number + 1 }}</button>
 
-      <button mat-button *ngIf="pages.number <3" [disabled]="checkFin() " (click)="chargerNextPage()">Suivant</button>
-      <button mat-button *ngIf="pages.number >=3" [disabled]="checkFin() " (click)="chargerNextPage()">
-        <mat-icon>arrow_forward</mat-icon>
-      </button>
+
+      <button  mat-button *ngIf="pages.number >=2" [disabled]="checkFin() " (click)="chargerNextPage()">{{pages.number +2}}</button>
+
+      <button  mat-button [disabled]="checkFin() " (click)="chargerNextPage()">Suivante</button>
+
 
     </div>
-    <div class="row center">Page courante : {{pages.number + 1}} | Nombre de Page totale : {{pages?.totalPages}}</div>
+<!--    Pagination for mobile-->
+    <div class="center" *ngIf="isMobile" >
+
+      <button  mat-button [disabled]="pages.number <= 0"  (click)="chargerPrevPage()"> <mat-icon>arrow_backward</mat-icon></button>
+      <button mat-button class="c_active" color="accent"> {{pages.number + 1}} </button>
+      <button  mat-button [disabled]="checkFin() " (click)="chargerNextPage()"><mat-icon>arrow_forward</mat-icon></button>
+      <div class="mb-20">
+
+      </div>
+    </div>
+<!--    for mobile end-->
+
+
     <!--    pagination end-->
+
+
 
   </mat-card-actions>
 </mat-card>
