@@ -28,7 +28,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   //var mat end
   page: number = 0;
-  size: number = 5;
+  size: number = 6;
   links: ApiLink = {
     first: "",
     last: "",
@@ -38,6 +38,7 @@ export class ItemListComponent implements OnInit {
     search: "",
     self: "",
   };
+  nombreColonneDefault = 3;
   pages: ApiPage = {
     number: 0,
     size: 5,

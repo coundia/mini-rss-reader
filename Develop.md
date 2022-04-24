@@ -58,3 +58,9 @@ git pull origin git checkout main heroku git:remote -a mini-rss-reader git push 
 
 
 HELPED :  https://zoaibkhan.com/blog/angular-material-dark-mode-in-3-steps/
+
+
+## ADD flex-layout for dev 
+
+- fxLayout : gerer les ROW et column
+- -  fxFlex : gerer les row 
