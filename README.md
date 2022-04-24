@@ -161,7 +161,7 @@ Lien Swagger
 
 [https://mini-rss-api.herokuapp.com/swagger-ui/index.html](https://mini-rss-api.herokuapp.com/swagger-ui/index.html)
 
-- Lien DEMO 
+- Lien DEMO derniere version :    
 
 [https://mini-rss-reader.herokuapp.com/](https://mini-rss-reader.herokuapp.com/)
 
