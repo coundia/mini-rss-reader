@@ -6,11 +6,11 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FluxRssModule} from "./flux-rss/flux-rss.module";
-import {AboutComponent} from './about/about.component';
 import {registerLocaleData} from "@angular/common";
 import * as fr from '@angular/common/locales/fr';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {AboutComponent} from "./core/about/about.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import {environment} from '../environments/environment';
     HttpClientModule,
     AppRoutingModule,
     FluxRssModule,
+
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

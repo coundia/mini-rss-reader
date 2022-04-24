@@ -22,13 +22,18 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {HomeComponent} from './home/home.component';
+import {CoreModule} from "../core/core.module";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
     ItemComponent,
-    ItemListComponent
+    ItemListComponent,
+    HomeComponent
   ],
   imports: [
+    CoreModule,
     CommonModule,
     MatTableModule,
     MatSortModule,
@@ -45,7 +50,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatSlideToggleModule,
     MatProgressBarModule,
     MatDividerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatGridListModule
   ]
 })
 export class FluxRssModule {
