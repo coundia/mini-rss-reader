@@ -9,7 +9,7 @@
   </a>
 
   <span class="example-spacer"></span>
-  <button title="Recuperer les nouveaux articles ." (click)="refleshItems()" mat-button  color="accent" id="btn_refresh" color="accent"  matBadgeColor="primary"
+  <button title="Récuperer les nouveaux articles ." (click)="refleshItems()" mat-button   id="btn_refresh" color="accent"  matBadgeColor="primary"
           matBadge="{{pages?.totalElements}}"
           aria-label="Recuperer les nouveaux articles .">
     <mat-icon>refresh</mat-icon>
@@ -51,7 +51,7 @@
           </p>
           <div></div>
           <div class="card-buttons">
-            <a mat-raised-button color="accent" class="text-bold btn-voir" target="_blank" href="{{ item.link}}">
+            <a  mat-raised-button color="accent" class="text-bold btn-voir" target="_blank" href="{{ item.link}}" rel="noopener noreferrer" >
               <span *ngIf="!isMobile"> Voir l'article</span>
               <mat-icon>arrow_forward</mat-icon>
             </a>

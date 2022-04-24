@@ -1,10 +1,14 @@
 # MINI PROJET FLUX RSS
 
-# Conext du projet
+# Context du projet
 
 MINI PROJET FLUX RSS
 
 PROGRAMME SOFTWARE ENGINEERING EDACY - DIGITAL AFRICA
+
+L’objectif de ce projet est de développer un lecteur de flux RSS
+
+By Papa COUNDIA
 
 ## Objectif
 
