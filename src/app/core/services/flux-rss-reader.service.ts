@@ -42,19 +42,20 @@ export class FluxRssReaderService {
   }
 
   //charger la premiere categorie  ,page et size (Channel)
-  getChannelByPage(page:number,size:number): Observable<any> {
+  getChannelByPage(page: number, size: number): Observable<any> {
 
-    return this.getChannelByUriAndPage(this.URI_CHANNELS,page,size)
+    return this.getChannelByUriAndPage(this.URI_CHANNELS, page, size)
+  }
+
+  //charger les categories via uri ,page et size (Channel)
+  getChannelByUriAndPage(uri: string, page: number, size: number): Observable<any> {
+    const requestUrl = `?page=${page}&size=${size}`;
+    return this.getChannelByUri(this.URI_CHANNELS + requestUrl)
   }
 
   //charger les categories by Uri (Channel)
   private getChannelByUri(uri: string): Observable<any> {
     return this.http.get<any>(uri + "&sort=pubDate,desc");
-  }
-  //charger les categories via uri ,page et size (Channel)
-  getChannelByUriAndPage(uri: string,page:number,size:number): Observable<any> {
-    const requestUrl = `?page=${page}&size=${size}`;
-    return this.getChannelByUri(this.URI_CHANNELS+requestUrl)
   }
 
 }

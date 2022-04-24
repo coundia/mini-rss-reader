@@ -1,17 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {map, take, tap} from 'rxjs/operators';
 import {Item} from "../../core/models/item/item.model";
 import {FluxRssReaderService} from "../../core/services/flux-rss-reader.service";
-
-
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
 import {ItemComponent} from "../item/item.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ApiPage} from "../../core/interfaces/ApiPage.interface";
 import {ApiLink} from "../../core/interfaces/ApiLink.interface";
 import {Channel} from "../../core/models/item/channel.model";
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {of} from "rxjs";
 
 
 @Component({
@@ -24,11 +21,11 @@ export class ItemListComponent implements OnInit {
   item!: Item;
   items!: Item[];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
   //var mat end
   page: number = 0;
   size: number = 6;
+  isDark = false;
+  isDark$ = of<boolean>(false);
   links: ApiLink = {
     first: "",
     last: "",
@@ -54,24 +51,22 @@ export class ItemListComponent implements OnInit {
     link: "https://www.lemonde.fr/rss/en_continu.xml",
     title: "Le Monde.fr - Actualités et Infos en France et dans le monde"
   };
+  isMobile = false;
   private channels: Channel[] | undefined;
-
 
   constructor(public dialog: MatDialog, private fluxRssReaderService: FluxRssReaderService, private responsiveService: BreakpointObserver) {
   }
-
-  isMobile = false;
 
   ngOnInit(): void {
     console.log("****** on init ***")
 
     console.log('HandsetLandscape ' + Breakpoints.Medium);
 
-      this.responsiveService.observe([
-              Breakpoints.XSmall,
-              Breakpoints.Small,
+    this.responsiveService.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
 
-            ])
+    ])
       .subscribe(result => {
         this.isMobile = result.matches;
       });
@@ -213,16 +208,26 @@ export class ItemListComponent implements OnInit {
   }
 
   getShortTitle(title: string) {
-   return title.substring(0, 11)+"...";
+    return title.substring(0, 11) + "...";
   }
+
 //vue de l'application
+
   changerVue() {
     console.log(this.nombreColonneDefault)
-    if( this.nombreColonneDefault<=3)
-      this.nombreColonneDefault=this.nombreColonneDefault-1;
-    if( this.nombreColonneDefault ==0)
-      this.nombreColonneDefault=3;
+    if (this.nombreColonneDefault <= 3)
+      this.nombreColonneDefault = this.nombreColonneDefault - 1;
+    if (this.nombreColonneDefault == 0)
+      this.nombreColonneDefault = 3;
 
+  }
+
+  //gerer le mode nuit
+
+  toggleDarkTheme() {
+    console.log(this.isDark)
+    this.isDark = !this.isDark;
+    this.isDark$ = of<boolean>(!this.isDark)
   }
 }
 
