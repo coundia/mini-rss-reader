@@ -9,7 +9,8 @@ var limiter = new RateLimit({
   windowMs: 60*1000, // 1 minute
   max: 10
 });
-app.use(limiter);
+//Pour que pour heroku marche
+// app.use(limiter);
 
 app.use(express.static(__dirname + '/dist/mini-rss-reader'));
 app.get('/*', function (req, res) {
